@@ -1,0 +1,49 @@
+<div
+      id="breakpoint-helper"
+      class="font-jetbrainsmono fixed top-0 z-500 m-2 hidden w-auto rounded-md bg-red-500 p-2 text-center text-[12px] sm:bg-green-500 md:bg-blue-500 lg:bg-yellow-500 xl:bg-purple-500 2xl:bg-pink-500"
+      style="display: none"
+    >
+      <div class="flex items-center gap-2">
+        <span class="inline sm:hidden"
+          ><strong class="rounded-sm px-4" style="background-color: rgba(255, 255, 255, 0.4)">base</strong> 32rem
+          (512px) @media (width >= 32rem)</span
+        >
+        <span class="hidden sm:inline md:hidden"
+          ><strong class="rounded-sm px-4" style="background-color: rgba(255, 255, 255, 0.4)">sm</strong> 40rem (640px)
+          @media (width >= 40rem)</span
+        >
+        <span class="hidden md:inline lg:hidden"
+          ><strong class="rounded-sm px-4" style="background-color: rgba(255, 255, 255, 0.4)">md</strong> 48rem (768px)
+          @media (width >= 48rem)</span
+        >
+        <span class="hidden lg:inline xl:hidden"
+          ><strong class="rounded-sm px-4" style="background-color: rgba(255, 255, 255, 0.4)">lg</strong> 64rem (1024px)
+          @media (width >= 64rem)</span
+        >
+        <span class="hidden xl:inline 2xl:hidden"
+          ><strong class="rounded-sm px-4" style="background-color: rgba(255, 255, 255, 0.4)">xl</strong> 80rem (1280px)
+          @media (width >= 80rem)</span
+        >
+        <span class="hidden 2xl:inline"
+          ><strong class="rounded-sm px-4" style="background-color: rgba(255, 255, 255, 0.4)">2xl</strong> 96rem
+          (1536px) @media (width >= 96rem)</span
+        >
+        <button
+          id="breakpoint-helper-hide-btn"
+          type="button"
+          class="ml-2 flex cursor-pointer items-center justify-center rounded p-1 transition-opacity hover:bg-white/50 hover:opacity-80"
+          aria-label="Skrýt breakpoint helper na 20 sekund"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-4"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+          </svg>
+        </button>
+      </div>
+    </div>

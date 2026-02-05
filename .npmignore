@@ -1,0 +1,31 @@
+# Source files
+src/
+*.ts
+!*.d.ts
+
+# Config files
+tsconfig.json
+vite.config.ts
+.gitignore
+.npmignore
+
+# Development files
+node_modules/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts (keep dist/)
+*.map
+
+# Test files
+**/*.test.*
+**/*.spec.*

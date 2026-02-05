@@ -1,0 +1,150 @@
+/* Tailwind Breakpoint Indicator Styles */
+
+.breakpoint-helper {
+  position: fixed;
+  top: 0;
+  z-index: 500;
+  margin: 0.5rem;
+  width: auto;
+  border-radius: 0.375rem;
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 12px;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  background-color: #ef4444; /* red-500 - base */
+  color: white;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+/* Breakpoint-specific background colors */
+/* Base (default) - red */
+.breakpoint-helper {
+  background-color: #ef4444; /* red-500 */
+}
+
+/* SM - green */
+@media (min-width: 640px) {
+  .breakpoint-helper {
+    background-color: #22c55e; /* green-500 */
+  }
+}
+
+/* MD - blue */
+@media (min-width: 768px) {
+  .breakpoint-helper {
+    background-color: #3b82f6; /* blue-500 */
+  }
+}
+
+/* LG - yellow */
+@media (min-width: 1024px) {
+  .breakpoint-helper {
+    background-color: #eab308; /* yellow-500 */
+  }
+}
+
+/* XL - purple */
+@media (min-width: 1280px) {
+  .breakpoint-helper {
+    background-color: #a855f7; /* purple-500 */
+  }
+}
+
+/* 2XL - pink */
+@media (min-width: 1536px) {
+  .breakpoint-helper {
+    background-color: #ec4899; /* pink-500 */
+  }
+}
+
+.breakpoint-helper-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.breakpoint-helper-label {
+  display: none; /* Hide all by default */
+}
+
+/* Show only the active breakpoint */
+.breakpoint-helper-base {
+  display: inline-block;
+}
+
+@media (min-width: 640px) {
+  .breakpoint-helper-base {
+    display: none;
+  }
+  .breakpoint-helper-sm {
+    display: inline-block;
+  }
+}
+
+@media (min-width: 768px) {
+  .breakpoint-helper-sm {
+    display: none;
+  }
+  .breakpoint-helper-md {
+    display: inline-block;
+  }
+}
+
+@media (min-width: 1024px) {
+  .breakpoint-helper-md {
+    display: none;
+  }
+  .breakpoint-helper-lg {
+    display: inline-block;
+  }
+}
+
+@media (min-width: 1280px) {
+  .breakpoint-helper-lg {
+    display: none;
+  }
+  .breakpoint-helper-xl {
+    display: inline-block;
+  }
+}
+
+@media (min-width: 1536px) {
+  .breakpoint-helper-xl {
+    display: none;
+  }
+  .breakpoint-helper-2xl {
+    display: inline-block;
+  }
+}
+
+.breakpoint-helper-badge {
+  display: inline-block;
+  border-radius: 0.125rem;
+  padding: 0.25rem 1rem;
+  background-color: rgba(255, 255, 255, 0.4);
+  font-weight: 600;
+}
+
+.breakpoint-helper-hide-btn {
+  margin-left: 0.5rem;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.25rem;
+  padding: 0.25rem;
+  transition: opacity 0.2s, background-color 0.2s;
+  background: none;
+  border: none;
+  color: inherit;
+}
+
+.breakpoint-helper-hide-btn:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  opacity: 0.8;
+}
+
+.breakpoint-helper-icon {
+  width: 1rem;
+  height: 1rem;
+}

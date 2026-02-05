@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tailwind Breakpoint Indicator - Example</title>
+  <link rel="stylesheet" href="../dist/styles.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    .content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin-top: 0;
+    }
+    .resize-hint {
+      background: #f3f4f6;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin: 2rem 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <h1>Tailwind Breakpoint Indicator Example</h1>
+    <p>Resize your browser window to see the breakpoint indicator change colors in the top-left corner.</p>
+    
+    <div class="resize-hint">
+      <strong>Breakpoints:</strong>
+      <ul>
+        <li><strong>base</strong>: &lt; 640px (red)</li>
+        <li><strong>sm</strong>: ≥ 640px (green)</li>
+        <li><strong>md</strong>: ≥ 768px (blue)</li>
+        <li><strong>lg</strong>: ≥ 1024px (yellow)</li>
+        <li><strong>xl</strong>: ≥ 1280px (purple)</li>
+        <li><strong>2xl</strong>: ≥ 1536px (pink)</li>
+      </ul>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initBreakpointHelper } from '../dist/index.esm.js'
+    
+    // Initialize with enabled: true for demo purposes
+    // In real usage, it would auto-detect dev mode
+    initBreakpointHelper({
+      enabled: true,
+      hideDuration: 20000
+    })
+  </script>
+</body>
+</html>
