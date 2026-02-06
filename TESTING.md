@@ -424,3 +424,54 @@ npm publish --dry-run
 # 5. Pokud vše vypadá dobře, publikuj
 # npm publish
 ```
+
+---
+
+## Publikování nové verze na npm
+
+Až máš změny na GitHubu a chceš vydat novou verzi na npm:
+
+### 1. Zvýš verzi v `package.json`
+
+Podle typu změn ( [semver](https://semver.org/) ):
+
+- **Bugfix, drobné úpravy** → PATCH: `1.0.0` → `1.0.1`
+- **Nové funkce (zpětně kompatibilní)** → MINOR: `1.0.0` → `1.1.0`
+- **Breaking changes** → MAJOR: `1.0.0` → `2.0.0`
+
+**Ručně:** uprav v `package.json` pole `"version"`.
+
+**Příkazem (zároveň vytvoří git tag a commit):**
+```bash
+# 1.0.0 → 1.0.1
+npm version patch
+
+# 1.0.0 → 1.1.0
+npm version minor
+
+# 1.0.0 → 2.0.0
+npm version major
+```
+
+### 2. Build a publikace
+
+```bash
+# Build se spustí automaticky před publish (prepublishOnly)
+npm publish --access public
+```
+
+U scoped balíčku (`@kittler/...`) vždy používej `--access public`, aby byl balíček veřejný.
+
+### 3. Push na GitHub (pokud jsi použil `npm version`)
+
+```bash
+git push origin main
+git push origin --tags
+```
+
+### Rychlý checklist pro novou verzi
+
+1. Změny commitnuté na GitHubu  
+2. Verze zvýšená v `package.json`  
+3. `npm publish --access public`  
+4. `git push` (+ `--tags`, pokud jsi použil `npm version`)
