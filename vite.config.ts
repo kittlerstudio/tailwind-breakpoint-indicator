@@ -11,7 +11,11 @@ export default defineConfig({
     dts({
       insertTypesEntry: true,
       exclude: ['**/*.test.ts', '**/*.spec.ts'],
-      outDir: 'dist'
+      outDir: 'dist',
+      include: ['src/**/*.ts'],
+      root: process.cwd(),
+      copyDtsFiles: true,
+      rollupTypes: true
     }),
     {
       name: 'copy-css',
