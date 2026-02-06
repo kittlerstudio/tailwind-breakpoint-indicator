@@ -1,6 +1,6 @@
 {
   "name": "@kittler/tailwind-breakpoint-indicator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Visual breakpoint indicator for Tailwind CSS development",
   "type": "module",
   "main": "./dist/index.js",
