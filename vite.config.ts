@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
 import dts from 'vite-plugin-dts'
-import { copyFileSync, existsSync, mkdirSync } from 'fs'
+import { copyFileSync, existsSync, mkdirSync, writeFileSync } from 'fs'
 import { fileURLToPath } from 'url'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
@@ -18,7 +18,7 @@ export default defineConfig({
       rollupTypes: true
     }),
     {
-      name: 'copy-css',
+      name: 'copy-css-and-generate-types',
       closeBundle() {
         // Ensure dist directory exists
         const distDir = resolve(__dirname, 'dist')
@@ -40,6 +40,19 @@ export default defineConfig({
           }
         } else {
           console.warn('Warning: src/styles.css not found')
+        }
+        
+        // Generate TypeScript definitions for CSS
+        const stylesDtsPath = resolve(__dirname, 'dist/styles.d.ts')
+        const stylesDtsContent = `declare const styles: string
+export default styles
+`
+        try {
+          writeFileSync(stylesDtsPath, stylesDtsContent, 'utf-8')
+          console.log('✓ TypeScript definitions generated for styles.css')
+        } catch (error) {
+          console.error('Failed to generate styles.d.ts:', error)
+          throw error
         }
       }
     }

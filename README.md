@@ -9,14 +9,14 @@ Visual breakpoint indicator tool for Tailwind CSS development. Shows the current
 - 🎨 Visual indicator with color-coded breakpoints
 - 🔄 Automatically detects development mode
 - ⏱️ Hide button with 20-second auto-show timer
-- 🎯 Works with any build tool (Vite, Webpack, Rollup, etc.)
+- 🎯 Works with any build tool (Vite, Vue, Webpack, Rollup, etc.)
 - 📦 Zero dependencies
 - 🎛️ Configurable options
 
 ## Installation
 
 ```bash
-npm install tailwind-breakpoint-indicator
+npm install @kittler/tailwind-breakpoint-indicator
 ```
 
 ## Usage
@@ -39,8 +39,8 @@ Import the package in your entry file; in development mode the helper will initi
 
 ```javascript
 // In your entry file (e.g. src/main.ts or src/main.js)
-import 'tailwind-breakpoint-indicator/styles' // Import CSS
-import 'tailwind-breakpoint-indicator' // Import JS (auto-initializes)
+import '@kittler/tailwind-breakpoint-indicator/styles' // Import CSS
+import '@kittler/tailwind-breakpoint-indicator' // Import JS (auto-initializes)
 ```
 
 ### Manual Initialization
@@ -48,8 +48,8 @@ import 'tailwind-breakpoint-indicator' // Import JS (auto-initializes)
 For more control, you can manually initialize the helper in the same entry file:
 
 ```javascript
-import 'tailwind-breakpoint-indicator/styles' // Import CSS
-import { initBreakpointHelper } from 'tailwind-breakpoint-indicator'
+import '@kittler/tailwind-breakpoint-indicator/styles' // Import CSS
+import { initBreakpointHelper } from '@kittler/tailwind-breakpoint-indicator'
 
 // With default options (auto-detects dev mode)
 initBreakpointHelper()
@@ -118,8 +118,8 @@ If you prefer to use your own HTML element (e.g., from a template), you can:
 
 ```javascript
 // In your JS - the helper will use the existing element
-import 'tailwind-breakpoint-indicator/styles'
-import { initBreakpointHelper } from 'tailwind-breakpoint-indicator'
+import '@kittler/tailwind-breakpoint-indicator/styles'
+import { initBreakpointHelper } from '@kittler/tailwind-breakpoint-indicator'
 
 initBreakpointHelper()
 ```
@@ -134,61 +134,71 @@ initBreakpointHelper({
 
 ## Framework Integration
 
-### Vite
+### ✅ Tested Frameworks
+
+The following frameworks have been tested and verified to work:
+
+#### Vanilla HTML
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="path/to/styles.css">
+</head>
+<body>
+  <script type="module">
+    import '@kittler/tailwind-breakpoint-indicator/styles'
+    import '@kittler/tailwind-breakpoint-indicator'
+  </script>
+</body>
+</html>
+```
+
+#### Vanilla HTML + Vite
 
 ```javascript
-// vite.config.js
-import { defineConfig } from 'vite'
-
-export default defineConfig({
-  // ... your config
-})
+// main.js (entry file)
+import '@kittler/tailwind-breakpoint-indicator/styles'
+import '@kittler/tailwind-breakpoint-indicator'
 ```
+
+```html
+<!-- index.html -->
+<script src="/src/main.js" type="module"></script>
+```
+
+#### Vue
 
 ```javascript
 // main.js
-import 'tailwind-breakpoint-indicator/styles'
-import 'tailwind-breakpoint-indicator'
+import '@kittler/tailwind-breakpoint-indicator/styles'
+import '@kittler/tailwind-breakpoint-indicator'
 ```
 
-### React
-
-```javascript
-// main.jsx or App.jsx
-import 'tailwind-breakpoint-indicator/styles'
-import { initBreakpointHelper } from 'tailwind-breakpoint-indicator'
-import { useEffect } from 'react'
-
-function App() {
-  useEffect(() => {
-    initBreakpointHelper()
-  }, [])
-  
-  return <div>Your app</div>
-}
-```
-
-### Vue
-
-```javascript
-// main.js
-import 'tailwind-breakpoint-indicator/styles'
-import 'tailwind-breakpoint-indicator'
-```
-
-Or in a component:
+Or in a Vue component:
 
 ```vue
 <script setup>
 import { onMounted } from 'vue'
-import { initBreakpointHelper } from 'tailwind-breakpoint-indicator'
-import 'tailwind-breakpoint-indicator/styles'
+import { initBreakpointHelper } from '@kittler/tailwind-breakpoint-indicator'
+import '@kittler/tailwind-breakpoint-indicator/styles'
 
 onMounted(() => {
   initBreakpointHelper()
 })
 </script>
 ```
+
+### ⚠️ Other Frameworks
+
+The following frameworks should work but have not been tested yet. If you test them, please report any issues:
+
+- **React** - Should work with `useEffect` hook
+- **Svelte** - Should work with `onMount` lifecycle
+- **Angular** - Should work in component lifecycle hooks
+- **Webpack** - Should work with standard imports
+- **Rollup** - Should work with standard imports
 
 ## Building from Source
 

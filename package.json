@@ -12,7 +12,10 @@
       "import": "./dist/index.esm.js",
       "require": "./dist/index.js"
     },
-    "./styles": "./dist/styles.css"
+    "./styles": {
+      "types": "./dist/styles.d.ts",
+      "default": "./dist/styles.css"
+    }
   },
   "files": [
     "dist",
