@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tailwind Breakpoint Indicator – Example (Tailwind v3)</title>
+  <link rel="stylesheet" href="../dist/styles.css">
+  <style>
+    /* No :root --breakpoint-* here – simulates project without Tailwind v4 @theme */
+    body {
+      margin: 0;
+      padding: 2rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    .content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    h1 { margin-top: 0; }
+    .resize-hint {
+      background: #f3f4f6;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin: 2rem 0;
+    }
+    code { background: #e5e7eb; padding: 0.125rem 0.375rem; border-radius: 0.25rem; }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <h1>Example: Tailwind v3 (and older)</h1>
+    <p>Breakpoints are passed manually from <code>tailwind.config.js</code> – no CSS variables on this page.</p>
+
+    <div class="resize-hint">
+      <strong>How to test v3 behaviour</strong>
+      <ul>
+        <li>This page does <em>not</em> define <code>--breakpoint-*</code> in CSS.</li>
+        <li>Breakpoints are passed into <code>initBreakpointHelper({ breakpoints: { ... } })</code>.</li>
+        <li>In a real v3 project you’d copy from <code>theme.extend.screens</code> or <code>theme.screens</code>.</li>
+      </ul>
+      <p><strong>Breakpoints used here:</strong> base, xs (30rem), sm, md, lg, xl, 2xl, 3xl (120rem). Resize the window to see the active one.</p>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initBreakpointHelper } from '../dist/index.esm.js'
+
+    // Tailwind v3: breakpoints from tailwind.config.js → theme.extend.screens (or theme.screens)
+    initBreakpointHelper({
+      enabled: true,
+      hideDuration: 20000,
+      breakpoints: {
+        xs: '30rem',
+        sm: '40rem',
+        md: '48rem',
+        lg: '64rem',
+        xl: '80rem',
+        '2xl': '96rem',
+        '3xl': '120rem'
+      }
+    })
+  </script>
+</body>
+</html>

@@ -61,10 +61,11 @@ export default styles
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'TailwindBreakpointIndicator',
-      formats: ['es', 'cjs'],
+      formats: ['es', 'cjs', 'umd'],
       fileName: (format) => {
         if (format === 'es') return 'index.esm.js'
         if (format === 'cjs') return 'index.js'
+        if (format === 'umd') return 'index.umd.js'
         return 'index.js'
       }
     },

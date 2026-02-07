@@ -56,10 +56,29 @@ Otevři následující URL v prohlížeči:
 - **Manual initialization test:** `http://localhost:8000/test/test-manual.html`
   - Testuje manuální inicializaci s různými options
   
-- **Example usage:** `http://localhost:8000/example/index.html`
-  - Obecný příklad použití
+- **Example usage (Tailwind v4):** `http://localhost:8000/example/index.html`
+  - Načítání breakpointů z CSS (`:root { --breakpoint-* }`), simulace v4 @theme
+- **Example (Tailwind v3):** `http://localhost:8000/example/example-v3.html`
+  - Ruční předání breakpointů přes `initBreakpointHelper({ breakpoints: { ... } })` – žádné CSS proměnné
 
 **Poznámka:** Server automaticky servuje všechny potřebné soubory (JS, CSS) se správnými CORS hlavičkami pro ES moduly.
+
+### Debugování custom breakpointů (Vue/Vite)
+
+Pokud custom breakpointy (desktop, small, atd.) nefungují ve Vue projektu:
+
+```javascript
+// V konzoli prohlížeče nebo v kódu:
+import { debugBreakpointDetection } from '@kittler/tailwind-breakpoint-indicator'
+
+const debug = await debugBreakpointDetection()
+console.log('Z CSS:', debug.fromCss)
+console.log('Z fetch:', debug.fromFetch)
+console.log('Stylesheet URL:', debug.stylesheetHrefs)
+console.log('Ukázka CSS:', debug.sampleFromFirstSheet)
+```
+
+Tím zjistíš, co se podařilo detekovat a jak vypadá stažené CSS. Pokud `desktop` chybí, ověř že používáš alespoň jednu třídu s prefixem `desktop:` (např. `desktop:flex`), aby Tailwind vygeneroval odpovídající CSS.
 
 ## 3. Testování pomocí npm link (doporučeno)
 

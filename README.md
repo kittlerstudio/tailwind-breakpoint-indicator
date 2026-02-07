@@ -66,23 +66,19 @@ initBreakpointHelper()
 
 ```typescript
 interface BreakpointHelperOptions {
-  /**
-   * Whether the helper is enabled. If not provided, will try to detect dev mode.
-   * @default undefined (auto-detect)
-   */
   enabled?: boolean
-  
-  /**
-   * Duration in milliseconds to hide the helper when hide button is clicked.
-   * @default 20000 (20 seconds)
-   */
   hideDuration?: number
-  
-  /**
-   * Custom container selector. If provided, will use existing element instead of creating one.
-   * @default undefined (creates new element)
-   */
   containerSelector?: string
+  /**
+   * Custom breakpoints. If provided, overrides breakpoints from CSS (v4). Use for Tailwind v3 or to override.
+   * @example { xs: '30rem', '3xl': '120rem' }
+   */
+  breakpoints?: Record<string, string>
+  /**
+   * Label for the range below the first breakpoint. Use false to hide the base row.
+   * @default 'base'
+   */
+  baseLabel?: string | false
 }
 ```
 
@@ -98,14 +94,72 @@ You can override this by setting `enabled: true` or `enabled: false` in options.
 
 ## Breakpoints
 
-The indicator shows the following Tailwind CSS breakpoints:
+By default the indicator uses Tailwind’s default breakpoints: **base**, **sm**, **md**, **lg**, **xl**, **2xl**. If your project uses **custom breakpoints** (e.g. `xs`, `3xl`), they can be used in two ways:
 
-- **base**: `< 640px` (red)
-- **sm**: `≥ 640px` (green)
-- **md**: `≥ 768px` (blue)
-- **lg**: `≥ 1024px` (yellow)
-- **xl**: `≥ 1280px` (purple)
-- **2xl**: `≥ 1536px` (pink)
+### Tailwind v4 – automatic
+
+If you define breakpoints in CSS inside `@theme`, the helper reads them from the page:
+
+```css
+@theme {
+  --breakpoint-xs: 30rem;
+  --breakpoint-sm: 40rem;
+  --breakpoint-2xl: 100rem;
+  --breakpoint-3xl: 120rem;
+}
+```
+
+No extra config is needed; the indicator will show **xs**, **sm**, **2xl**, **3xl**, etc., and highlight the current one.
+
+### Tailwind v3 (or override) – pass breakpoints manually
+
+Breakpoints in `tailwind.config.js` are not available in the browser, so you pass them into the init function. Read them from `theme.extend.screens` or `theme.screens` and pass the same object:
+
+```javascript
+// tailwind.config.js
+module.exports = {
+  theme: {
+    extend: {
+      screens: {
+        xs: '30rem',
+        '3xl': '120rem',
+      },
+    },
+  },
+}
+```
+
+```javascript
+// In your app entry (e.g. main.js)
+import { initBreakpointHelper } from '@kittler/tailwind-breakpoint-indicator'
+import '@kittler/tailwind-breakpoint-indicator/styles'
+
+initBreakpointHelper({
+  enabled: true,
+  breakpoints: {
+    xs: '30rem',
+    sm: '40rem',
+    md: '48rem',
+    lg: '64rem',
+    xl: '80rem',
+    '2xl': '96rem',
+    '3xl': '120rem',
+  },
+})
+```
+
+Values can be in `px`, `rem`, or `em`. If you pass `breakpoints`, it **overrides** any breakpoints read from CSS (one source of truth per init).
+
+### Base row
+
+The “base” row is the range below the first breakpoint. You can rename it or hide it:
+
+```javascript
+initBreakpointHelper({
+  baseLabel: 'default',  // show as "default" instead of "base"
+  // baseLabel: false,    // hide the base row; only breakpoint names are shown
+})
+```
 
 ## Using Existing HTML Element
 

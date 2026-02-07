@@ -6,9 +6,27 @@
   <title>Tailwind Breakpoint Indicator - Example</title>
   <link rel="stylesheet" href="../dist/styles.css">
   <style>
+    /* Simulate Tailwind v4 @theme: custom breakpoints for the indicator to read */
+    :root {
+  /*  
+      sm	40rem (640px)	@media (width >= 40rem) { ... }
+      md	48rem (768px)	@media (width >= 48rem) { ... }
+      lg	64rem (1024px)	@media (width >= 64rem) { ... }
+      xl	80rem (1280px)	@media (width >= 80rem) { ... }
+      2xl	96rem (1536px)	@media (width >= 96rem) { ... } 
+  */
+      --breakpoint-small: 30rem;
+      --breakpoint-sm: 40rem;   /* default Tailwind */
+      --breakpoint-md: 44rem;   /* default Tailwind */
+      --breakpoint-lg: 48rem;   /* default Tailwind */
+      --breakpoint-xl: 80rem;   /* default Tailwind */
+      --breakpoint-2xl: 96rem;  /* default Tailwind */
+      --breakpoint-3xl: 120rem;
+      --breakpoint-verybig: 150rem; 
+    }
     body {
       margin: 0;
-      padding: 2rem;
+    /*  padding: 2rem; */
       font-family: system-ui, -apple-system, sans-serif;
     }
     .content {
@@ -32,23 +50,23 @@
     <p>Resize your browser window to see the breakpoint indicator change colors in the top-left corner.</p>
     
     <div class="resize-hint">
-      <strong>Breakpoints:</strong>
+      <strong>Breakpoints</strong> (this example uses custom <code>xs</code> and <code>3xl</code> from <code>:root</code> to simulate Tailwind v4):
       <ul>
-        <li><strong>base</strong>: &lt; 640px (red)</li>
-        <li><strong>sm</strong>: ≥ 640px (green)</li>
-        <li><strong>md</strong>: ≥ 768px (blue)</li>
-        <li><strong>lg</strong>: ≥ 1024px (yellow)</li>
-        <li><strong>xl</strong>: ≥ 1280px (purple)</li>
-        <li><strong>2xl</strong>: ≥ 1536px (pink)</li>
+        <li><strong>base</strong>: &lt; 480px (xs)</li>
+        <li><strong>xs</strong>: 30rem (480px)</li>
+        <li><strong>sm</strong> – <strong>2xl</strong>: default Tailwind</li>
+        <li><strong>3xl</strong>: 120rem (1920px)</li>
       </ul>
+      <p>To test Tailwind v3 style, pass <code>breakpoints: { xs: '30rem', ... }</code> to <code>initBreakpointHelper()</code> and omit the <code>:root</code> variables.</p>
     </div>
   </div>
 
   <script type="module">
     import { initBreakpointHelper } from '../dist/index.esm.js'
-    
-    // Initialize with enabled: true for demo purposes
-    // In real usage, it would auto-detect dev mode
+
+    // Uses breakpoints from CSS (:root above) when available; otherwise defaults.
+    // To override (e.g. Tailwind v3), pass breakpoints explicitly:
+    // initBreakpointHelper({ enabled: true, breakpoints: { xs: '30rem', sm: '40rem', md: '48rem', lg: '64rem', xl: '80rem', '2xl': '96rem', '3xl': '120rem' } })
     initBreakpointHelper({
       enabled: true,
       hideDuration: 20000

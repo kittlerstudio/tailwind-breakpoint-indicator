@@ -16,45 +16,9 @@
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 
-/* Breakpoint-specific background colors */
-/* Base (default) - red */
+/* Default background; JS sets per-breakpoint color via inline style */
 .breakpoint-helper {
-  background-color: #ef4444; /* red-500 */
-}
-
-/* SM - green */
-@media (min-width: 640px) {
-  .breakpoint-helper {
-    background-color: #22c55e; /* green-500 */
-  }
-}
-
-/* MD - blue */
-@media (min-width: 768px) {
-  .breakpoint-helper {
-    background-color: #3b82f6; /* blue-500 */
-  }
-}
-
-/* LG - yellow */
-@media (min-width: 1024px) {
-  .breakpoint-helper {
-    background-color: #eab308; /* yellow-500 */
-  }
-}
-
-/* XL - purple */
-@media (min-width: 1280px) {
-  .breakpoint-helper {
-    background-color: #a855f7; /* purple-500 */
-  }
-}
-
-/* 2XL - pink */
-@media (min-width: 1536px) {
-  .breakpoint-helper {
-    background-color: #ec4899; /* pink-500 */
-  }
+  background-color: #ef4444; /* red-500 - base */
 }
 
 .breakpoint-helper-content {
@@ -64,57 +28,12 @@
 }
 
 .breakpoint-helper-label {
-  display: none; /* Hide all by default */
+  display: none;
 }
 
-/* Show only the active breakpoint */
-.breakpoint-helper-base {
+/* Show only the active breakpoint (set by JS) */
+.breakpoint-helper-label.breakpoint-helper-active {
   display: inline-block;
-}
-
-@media (min-width: 640px) {
-  .breakpoint-helper-base {
-    display: none;
-  }
-  .breakpoint-helper-sm {
-    display: inline-block;
-  }
-}
-
-@media (min-width: 768px) {
-  .breakpoint-helper-sm {
-    display: none;
-  }
-  .breakpoint-helper-md {
-    display: inline-block;
-  }
-}
-
-@media (min-width: 1024px) {
-  .breakpoint-helper-md {
-    display: none;
-  }
-  .breakpoint-helper-lg {
-    display: inline-block;
-  }
-}
-
-@media (min-width: 1280px) {
-  .breakpoint-helper-lg {
-    display: none;
-  }
-  .breakpoint-helper-xl {
-    display: inline-block;
-  }
-}
-
-@media (min-width: 1536px) {
-  .breakpoint-helper-xl {
-    display: none;
-  }
-  .breakpoint-helper-2xl {
-    display: inline-block;
-  }
 }
 
 .breakpoint-helper-badge {

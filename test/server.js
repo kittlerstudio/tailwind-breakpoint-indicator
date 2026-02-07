@@ -61,7 +61,8 @@ const server = createServer((req, res) => {
             <li><a href="/test/test-esm.html">ES Module Test</a></li>
             <li><a href="/test/test-umd.html">UMD Test</a></li>
             <li><a href="/test/test-manual.html">Manual Init Test</a></li>
-            <li><a href="/example/index.html">Example</a></li>
+            <li><a href="/example/index.html">Example (Tailwind v4)</a></li>
+            <li><a href="/example/example-v3.html">Example (Tailwind v3)</a></li>
           </ul>
         </body>
       </html>
@@ -105,7 +106,8 @@ Available test pages:
   📄 http://localhost:${port}/test/test-esm.html      - ES Module test
   📄 http://localhost:${port}/test/test-umd.html     - UMD format test
   📄 http://localhost:${port}/test/test-manual.html  - Manual initialization test
-  📄 http://localhost:${port}/example/index.html     - Example usage
+  📄 http://localhost:${port}/example/index.html     - Example (Tailwind v4 – CSS vars)
+  📄 http://localhost:${port}/example/example-v3.html - Example (Tailwind v3 – manual breakpoints)
 
 Press Ctrl+C to stop the server.
   `)
